@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import frc.robot.Constants;
@@ -74,7 +75,26 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //joystick buttons
-    final JoystickButton Intake = new JoystickButton(driverStick, 7);
+    final JoystickButton LowerIntake = new JoystickButton(driverStick, 7);
+    final JoystickButton UpperIntake = new JoystickButton(driverStick, 1);
+    final JoystickButton AllIntake = new JoystickButton(driverStick, 8);
+    final JoystickButton shooter = new JoystickButton(driverStick, 2);
+    final JoystickButton LimelightMove =  new JoystickButton(driverStick, 10);
+    final JoystickButton FarLimelight = new JoystickButton(driverStick, 9);
+    final JoystickButton Position = new JoystickButton(driverStick, 11);
+    final JoystickButton Rotation = new JoystickButton(driverStick, 12);
+    final JoystickButton Outtake = new JoystickButton(driverStick, 5);
+
+    final JoystickButton climbUp = new JoystickButton(buttonStick, 3);
+    final JoystickButton climbDown = new JoystickButton(buttonStick, 1);
+    final JoystickButton balanceLeft = new JoystickButton(buttonStick, 9);
+    final JoystickButton balanceRight = new JoystickButton(buttonStick, 10);
+    final JoystickButton ToggleLight = new JoystickButton(buttonStick, 4);
+
+
+
+
+    /*final JoystickButton Intake = new JoystickButton(driverStick, 7);
     final JoystickButton shooter = new JoystickButton(driverStick, 2);
     final JoystickButton LimelightMove =  new JoystickButton(driverStick, 10);
     final JoystickButton autoIntake = new JoystickButton(driverStick, 6);
@@ -90,12 +110,19 @@ public class RobotContainer {
     final JoystickButton balanceLeft = new JoystickButton(buttonStick, 9);
     final JoystickButton balanceRight = new JoystickButton(buttonStick, 10);
     final JoystickButton ToggleLight = new JoystickButton(buttonStick, 4);
-    final JoystickButton Outtake = new JoystickButton(buttonStick, 6);
+    final JoystickButton Outtake = new JoystickButton(buttonStick, 6);*/
 
 
 
     
-    
+    AllIntake.whenPressed(new AllIntakeOn(m_IntakeMaintain));
+    AllIntake.whenReleased(new AllIntakeOff(m_IntakeMaintain));
+
+    LowerIntake.whenPressed(new LowerIntakeOn(m_IntakeMaintain));
+    LowerIntake.whenReleased(new LowerIntakeOff(m_IntakeMaintain));
+
+    UpperIntake.whenPressed(new UpperIntakeOn(m_IntakeMaintain));
+    UpperIntake.whenReleased(new UpperIntakeOff(m_IntakeMaintain));
 
     shooter.whenPressed(new Shoot(m_shooter));
     shooter.whenReleased(new StopShoot(m_shooter,m_LimeLight));
@@ -110,25 +137,22 @@ public class RobotContainer {
     balanceRight.whenPressed(new BalanceRight(m_Balance));
     balanceRight.whenReleased(new StopBalance(m_Balance));
 
-    //gateTurn.whenPressed(new GateTurn(m_Block));
-    //gateTurn.whenReleased(new GateReturn(m_Block));
-
     FarLimelight.whenPressed(new FarLimelight(m_piboticsdrive,m_LimeLight, gyro));
     FarLimelight.whenReleased(new GetLimelight(m_LimeLight, gyro));
 
 
-    Intake.whenPressed(new IntakeOn(m_IntakeMaintain));
-    Intake.whenReleased(new IntakeOff(m_IntakeMaintain));
+    //Intake.whenPressed(new IntakeOn(m_IntakeMaintain));
+    //Intake.whenReleased(new IntakeOff(m_IntakeMaintain));
 
-    Outtake.whenPressed(new IntakeReverse(m_IntakeMaintain));
-    Outtake.whenReleased(new IntakeOff(m_IntakeMaintain));
+    //Outtake.whenPressed(new IntakeReverse(m_IntakeMaintain));
+    //Outtake.whenReleased(new IntakeOff(m_IntakeMaintain));
     
 
     LimelightMove.whenPressed(new DriveLimelight(m_piboticsdrive,m_LimeLight, gyro));
     LimelightMove.whenReleased(new GetLimelight(m_LimeLight, gyro));
 
-    autoIntake.whenPressed(new NewIntakeOn(m_IntakeMaintain));
-    autoIntake.whenReleased(new NewIntakeOff(m_IntakeMaintain));
+    //autoIntake.whenPressed(new NewIntakeOn(m_IntakeMaintain));
+    //autoIntake.whenReleased(new NewIntakeOff(m_IntakeMaintain));
 
     Position.whenPressed(new PositionControl(m_ControlPanel));
     Position.whenReleased(new StopControlPanel(m_ControlPanel));

@@ -7,25 +7,20 @@
 
 package frc.robot.commands;
 
-import java.util.function.DoubleSupplier;
-
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.IntakeMaintain;
 
-public class Shoot extends CommandBase {
+public class UpperIntakeOn extends CommandBase {
   /**
-   * Creates a new Shoot.
+   * Creates a new UpperIntakeOn.
    */
-  private final Shooter m_shooter;
+  private final IntakeMaintain m_IntakeMaintain;
 
-  public double tempSpeed = 0.85;
-
-  public Shoot(Shooter piboticsshooter) {
+  public UpperIntakeOn(IntakeMaintain intakeMaintain) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_shooter = piboticsshooter;
-    addRequirements(m_shooter);
+    m_IntakeMaintain = intakeMaintain;
+    addRequirements(m_IntakeMaintain);
+
   }
 
   // Called when the command is initially scheduled.
@@ -36,9 +31,7 @@ public class Shoot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //tempSpeed=SmartDashboard.getNumber("VariableSpeed", 0.0);
-    //SmartDashboard.putNumber("VariableSpeed", tempSpeed);
-    m_shooter.WheelsOn(tempSpeed);
+    m_IntakeMaintain.upperOn();
   }
 
   // Called once the command ends or is interrupted.

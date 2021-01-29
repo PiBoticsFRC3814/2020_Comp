@@ -33,7 +33,7 @@ public class Shooter extends SubsystemBase {
     //tempSpeed=SmartDashboard.getNumber("SetPoint", 0.0);
     
     //normal stuff
-   // m_motor.set(-tempSpeed);
+    //m_motor.set(-tempSpeed);
     m_motor.set(-speed);
     //SmartDashboard.putNumber("SetPoint", tempSpeed);
   }

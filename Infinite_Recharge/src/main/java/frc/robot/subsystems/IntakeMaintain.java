@@ -20,20 +20,20 @@ public class IntakeMaintain extends SubsystemBase {
   WPI_TalonSRX rearIndex;
   WPI_TalonSRX mecanumIntake;
   WPI_TalonSRX mecanumBackIntake;
-  WPI_TalonSRX liftIntake;
+  //WPI_TalonSRX liftIntake;
 
-  DigitalInput lowerIntake;
-  DigitalInput upperIntake;
+  //DigitalInput lowerIntake;
+  //DigitalInput upperIntake;
 
   public IntakeMaintain() {
     frontIndex = new WPI_TalonSRX(Constants.frontIntake);
     rearIndex = new WPI_TalonSRX(Constants.rearIntake);
     mecanumIntake = new WPI_TalonSRX(Constants.mecanumIntake);
     mecanumBackIntake = new WPI_TalonSRX(Constants.mecanumBackIntake);
-    liftIntake = new WPI_TalonSRX(Constants.liftIntake);
+    //liftIntake = new WPI_TalonSRX(Constants.liftIntake);
 
-    lowerIntake = new DigitalInput(Constants.lowerInput);
-    upperIntake = new DigitalInput(Constants.upperInput);
+    //lowerIntake = new DigitalInput(Constants.lowerInput);
+    //upperIntake = new DigitalInput(Constants.upperInput);
   }
 
   @Override
@@ -41,48 +41,38 @@ public class IntakeMaintain extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void intakeOn(){
+  public void upperOn(){
     rearIndex.set(-Constants.ballIntakeSpeed);
     frontIndex.set(Constants.ballIntakeSpeed);
   }
-
+  public void mecanumOn(){
+    mecanumIntake.set(Constants.mecanumIntakeSpeed);
+    mecanumBackIntake.set(Constants.mecanumIntakeSpeed);
+  }
+  public void intakeOn(){
+    mecanumIntake.set(Constants.mecanumIntakeSpeed);
+    mecanumBackIntake.set(Constants.mecanumIntakeSpeed);
+    rearIndex.set(-Constants.ballIntakeSpeed);
+    frontIndex.set(Constants.ballIntakeSpeed);
+  }
+  public void upperOff(){
+    rearIndex.set(0.0);
+    frontIndex.set(0.0);
+  }
+  public void mecanumOff(){
+    mecanumIntake.set(0.0);
+    mecanumBackIntake.set(0.0);
+  }
   public void intakeOff(){
     rearIndex.set(0.0);
     frontIndex.set(0.0);
     mecanumIntake.set(0.0);
     mecanumBackIntake.set(0.0);
   }
-  public void intakeReverse(){
+  public void upperReverse(){
     rearIndex.set(Constants.ballIntakeSpeed/2);
     frontIndex.set(-Constants.ballIntakeSpeed/2);
-    mecanumBackIntake.set(-Constants.mecanumIntakeSpeed/2);
   }
   
-  public void autoIntake(){
-    if (!upperIntake.get())
-    {
-      mecanumIntake.set(Constants.mecanumIntakeSpeed);
-      mecanumIntake.set(Constants.mecanumIntakeSpeed);
-      if (!lowerIntake.get())
-      {
-        intakeOn();
-      }
-      else
-      {
-        intakeOff();
-      }
-    }
-    else 
-    {
-      intakeOff();
-    }
-  }
-
-  public void intakeDown(){
-    liftIntake.set(-Constants.liftIntakeSpeed);
-  }
-
-  public void intakeUp(){
-    liftIntake.set(Constants.liftIntakeSpeed);
-  }
+  
 }

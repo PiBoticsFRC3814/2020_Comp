@@ -10,16 +10,17 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeMaintain;
 
-public class IntakeOff extends CommandBase {
+public class AllIntakeOn extends CommandBase {
   /**
-   * Creates a new IntakeOff.
+   * Creates a new AllIntakeOn.
    */
-  IntakeMaintain m_IntakeMaintain;
-  public IntakeOff(IntakeMaintain intakeMaintain) {
-    m_IntakeMaintain = intakeMaintain;
-    
-    addRequirements(m_IntakeMaintain);
+  private final IntakeMaintain m_IntakeMaintain;
+
+  public AllIntakeOn(IntakeMaintain intakeMaintain) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_IntakeMaintain = intakeMaintain;
+    addRequirements(m_IntakeMaintain);
+
   }
 
   // Called when the command is initially scheduled.
@@ -30,7 +31,7 @@ public class IntakeOff extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_IntakeMaintain.intakeOff();
+    m_IntakeMaintain.intakeOn();
   }
 
   // Called once the command ends or is interrupted.
@@ -41,6 +42,6 @@ public class IntakeOff extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }
