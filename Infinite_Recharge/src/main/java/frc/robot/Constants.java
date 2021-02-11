@@ -16,7 +16,10 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    
+//drive paramters
+    public static final double deadzoneX = 0.1;
+    public static final double deadzoneY = 0.1;
+    public static final double deadzoneZ = 0.1;
 //talon IDs
     public static final int frontIntake = 10;
     public static final int rearIntake = 11;
@@ -25,9 +28,12 @@ public final class Constants {
     public static final int liftIntake = 13;
     public static final int cMotor = 40;
     public static final int bMotor = 41;
-    public static final int leftDrive = 1;
     public static final int blMotor = 50;
-    public static final int rightDrive = 2;
+    //mecanum drive(lf, lr, rf, rr)
+    public static final int lf = 1;
+    public static final int lr = 2;
+    public static final int rf = 3;
+    public static final int rr = 4;
     public static final int ControlPanelMotor = 30;
     public static final int shooterMotor = 60;
 //Digital Input IDs
@@ -62,7 +68,7 @@ public final class Constants {
     public static final double llAngle = 18;
 
     //short firing range
-    public static final double shortLowest = 107;
+    public static final double shortLowest = 115;
     public static final double shortFarthest = 127;
     //far firing range
     public static final double farLowest = 184;

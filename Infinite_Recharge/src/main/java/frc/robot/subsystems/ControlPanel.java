@@ -34,10 +34,10 @@ public class ControlPanel extends SubsystemBase {
 
   private static final ColorMatch m_colorMatcher = new ColorMatch();
 
-  private static final Color kCyan = ColorMatch.makeColor(.11, .43, .43);
-  private static final Color kGreen = ColorMatch.makeColor(.15, .58, .25);
-  private static final Color kRed = ColorMatch.makeColor(.53, .34, .125);
-  private static final Color kYellow = ColorMatch.makeColor(.31, .56, .12);
+  private static final Color kCyan = ColorMatch.makeColor(.25, .45, .3);
+  private static final Color kGreen = ColorMatch.makeColor(.25, .56, .19);
+  private static final Color kRed = ColorMatch.makeColor(.56, .33, .1);
+  private static final Color kYellow = ColorMatch.makeColor(.39, .50, .1);
 
   Color detectedColor = colorSensor.getColor();
   ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
@@ -96,25 +96,25 @@ public class ControlPanel extends SubsystemBase {
     fmsData = DriverStation.getInstance().getGameSpecificMessage();
     if (Objects.equals(fmsData, "R"))
     {
-      gotoColor = "B";
+      gotoColor = "G";
     }
     else if (Objects.equals(fmsData, "G"))
     {
-      gotoColor = "Y";
+      gotoColor = "B";
     }
     else if (Objects.equals(fmsData, "B"))
     {
-      gotoColor = "R";
+      gotoColor = "Y";
     }
     else if (Objects.equals(fmsData, "Y"))
     {
-      gotoColor = "G";
+      gotoColor = "R";
     }
   }
 
   public void Position() {
     PutColorValue();
-    if (Objects.equals(gotoColor,colorCode))
+    if (Objects.equals(fmsData,colorCode))
     {
       ControlPanelMotor.set(-0.5);
       Timer.delay(0.03);

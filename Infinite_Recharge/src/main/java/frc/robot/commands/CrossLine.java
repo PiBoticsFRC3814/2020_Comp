@@ -32,26 +32,26 @@ public class CrossLine extends CommandBase {
   public void initialize() {
     Timeguy.reset();
     Timeguy.start();
-    m_crossline.Drive(0.0, 0.0, false);
+    m_crossline.Drive(0.0, 0.0, 0.0, 0.0);
     }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_crossline.Drive(-0.4, 0.0, false);
+    m_crossline.Drive(-0.4, 0.0, 0.0, 0.0);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_crossline.Drive(0.0, 0.0, false);
+    m_crossline.Drive(0.0, 0.0, 0.0, 0.0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     if(Timeguy.get() > 1.5){
-    m_crossline.Drive(0.0, 0.0, false);
+    m_crossline.Drive(0.0, 0.0, 0.0, 0.0);
     return true;
     }else{
       return false;

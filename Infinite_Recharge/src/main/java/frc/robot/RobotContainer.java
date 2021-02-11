@@ -54,7 +54,7 @@ public class RobotContainer {
    */
   public RobotContainer() {
 
-    m_piboticsdrive.setDefaultCommand(new PiboticsDrive(() -> driverStick.getY(), () -> driverStick.getZ(), m_piboticsdrive));
+    m_piboticsdrive.setDefaultCommand(new PiboticsDrive(() -> driverStick.getY(), () -> driverStick.getX(), () -> driverStick.getZ(), () -> gyro.getAngle(), m_piboticsdrive));
     m_LimeLight.setDefaultCommand(new GetLimelight(m_LimeLight, gyro));
     m_ControlPanel.setDefaultCommand(new GrabColorData(m_ControlPanel));
     
@@ -144,8 +144,8 @@ public class RobotContainer {
     //Intake.whenPressed(new IntakeOn(m_IntakeMaintain));
     //Intake.whenReleased(new IntakeOff(m_IntakeMaintain));
 
-    //Outtake.whenPressed(new IntakeReverse(m_IntakeMaintain));
-    //Outtake.whenReleased(new IntakeOff(m_IntakeMaintain));
+    Outtake.whenPressed(new IntakeReverse(m_IntakeMaintain));
+    Outtake.whenReleased(new UpperIntakeOff(m_IntakeMaintain));
     
 
     LimelightMove.whenPressed(new DriveLimelight(m_piboticsdrive,m_LimeLight, gyro));

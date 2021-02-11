@@ -16,21 +16,23 @@ public class DriveTrain extends SubsystemBase {
   /**
    * Creates a new DriveTrain.
    */
-  private static final WPI_TalonSRX leftmotor = new WPI_TalonSRX(Constants.leftDrive);
-  private static final WPI_TalonSRX rightmotor = new WPI_TalonSRX(Constants.rightDrive);
+  private static final WPI_TalonSRX lf = new WPI_TalonSRX(Constants.lf);
+  private static final WPI_TalonSRX lr = new WPI_TalonSRX(Constants.lr);
+  private static final WPI_TalonSRX rf = new WPI_TalonSRX(Constants.rf);
+  private static final WPI_TalonSRX rr = new WPI_TalonSRX(Constants.rr);
 
-  private static final DifferentialDrive piboticsdrive = new DifferentialDrive(leftmotor, rightmotor);
+
+  private static final MecanumDrive piboticsdrive = new MecanumDrive(lf, lr, rf, rr);
 
   public DriveTrain() {
-
+    lf.setInverted(false);
+    lr.setInverted(false);
+    rf.setInverted(false);
+    rr.setInverted(false);
   }
 
-  public void Drive(double y, double x, boolean stick) {
-    piboticsdrive.arcadeDrive(-y, x, stick);
-  }
-
-  public boolean isInverted(){
-    return leftmotor.getInverted();
+  public void Drive(double y, double x, double z, double gyro) {
+    piboticsdrive.driveCartesian(-x, y, z, gyro);
   }
 
   @Override
